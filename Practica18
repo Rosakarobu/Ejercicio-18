@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rosa Karina Rosas Burgueño - Practica #18</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --lav:      #C5C3E8;
+      --lav-cl:   #EEEDF9;
+      --lav-med:  #A09DC8;
+      --rosa:     #E8C3D4;
+      --rosa-cl:  #F9EEF3;
+      --azul-p:   #C3D4E8;
+      --azul-cl:  #EEF3F9;
+      --texto:    #3D3A5C;
+      --texto-cl: #7B789A;
+      --blanco:   #FDFCFF;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--lav-cl);
+      min-height: 100vh;
+    }
+
+    .topbar {
+      background: var(--lav-med);
+      color: var(--blanco);
+      font-size: .78rem;
+      font-weight: 600;
+      padding: .45rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      letter-spacing: .01em;
+    }
+
+    .topbar a {
+      color: var(--blanco);
+      text-decoration: none;
+      opacity: .88;
+      transition: opacity .15s;
+    }
+    .topbar a:hover { opacity: 1; text-decoration: underline; }
+
+    .topbar-links { display: flex; gap: 1.6rem; flex-wrap: wrap; }
+
+    nav {
+      background: var(--blanco);
+      box-shadow: 0 2px 18px rgba(160,157,200,.2);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+      height: 70px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: .9rem;
+      text-decoration: none;
+    }
+
+    .nav-logo {
+      width: 46px; height: 46px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--lav-med), var(--rosa));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Lora', serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: white;
+      letter-spacing: -.01em;
+    }
+
+    .nav-name-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+    .nav-name {
+      font-family: 'Lora', serif;
+      font-size: .98rem;
+      font-weight: 600;
+      color: var(--texto);
+      line-height: 1.2;
+    }
+    .nav-sub {
+      font-size: .7rem;
+      font-weight: 400;
+      color: var(--texto-cl);
+      letter-spacing: .02em;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: .2rem;
+      align-items: center;
+      height: 100%;
+    }
+
+    .nav-links > li { position: relative; height: 100%; display: flex; align-items: center; }
+
+    .nav-links > li > a {
+      display: flex;
+      align-items: center;
+      gap: .3rem;
+      padding: .45rem .9rem;
+      font-size: .88rem;
+      font-weight: 600;
+      color: var(--texto-cl);
+      text-decoration: none;
+      border-radius: 10px;
+      transition: background .18s, color .18s;
+    }
+    .nav-links > li > a:hover,
+    .nav-links > li:hover > a {
+      background: var(--lav-cl);
+      color: var(--texto);
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      background: var(--blanco);
+      border: 1.5px solid var(--lav-cl);
+      border-radius: 14px;
+      box-shadow: 0 8px 30px rgba(160,157,200,.25);
+      min-width: 210px;
+      padding: .6rem;
+      list-style: none;
+      z-index: 200;
+    }
+    .nav-links li:hover .dropdown-menu { display: block; }
+
+    .dropdown-menu li a {
+      display: block;
+      padding: .55rem 1rem;
+      font-size: .84rem;
+      font-weight: 600;
+      color: var(--texto);
+      text-decoration: none;
+      border-radius: 10px;
+      transition: background .15s;
+    }
+    .dropdown-menu li a:hover { background: var(--rosa-cl); }
+
+    .nav-cta {
+      background: linear-gradient(135deg, var(--lav-med), var(--rosa));
+      color: white !important;
+      padding: .55rem 1.3rem !important;
+      border-radius: 10px !important;
+      font-weight: 700 !important;
+      box-shadow: 0 3px 12px rgba(160,157,200,.4);
+      transition: transform .15s, box-shadow .15s !important;
+    }
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(160,157,200,.5) !important;
+      background: linear-gradient(135deg, #9491C0, #D8A0B9) !important;
+    }
+
+    .page-placeholder {
+      text-align: center;
+      padding: 6rem 2rem;
+      color: var(--texto-cl);
+      font-size: .95rem;
+      font-weight: 600;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .page-placeholder span {
+      display: block;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      opacity: .4;
+    }
+
+    @media(max-width: 780px) {
+      .nav-links { display: none; }
+      .topbar-links { display: none; }
+      nav { padding: 0 1.2rem; }
+      .topbar { padding: .4rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <span>Universidad Autónoma de Sinaloa &nbsp;·&nbsp;
+      <a href="http://dse.uasnet.mx/alumnos" target="_blank">SIIA Alumnos</a>
+      &nbsp;·&nbsp;
+      <a href="http://diplouasvirtual.net/ing_mochis" target="_blank">Moodle</a>
+      &nbsp;·&nbsp;
+      <a href="mailto:fim@uas.edu.mx">Contacto</a>
+    </span>
+    <div class="topbar-links">
+      <a href="#">Bolsa de Trabajo</a>
+      <a href="#">Convocatorias</a>
+      <a href="#">Transparencia</a>
+    </div>
+  </div>
+
+  <nav>
+    <a class="nav-brand" href="#">
+      <div class="nav-logo">FIM</div>
+      <div class="nav-name-wrap">
+        <span class="nav-name">Fac. de Ingeniería Mochis</span>
+        <span class="nav-sub">Universidad Autónoma de Sinaloa</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#">Inicio</a></li>
+
+      <li>
+        <a href="#">Oferta Educativa ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Ing. Civil</a></li>
+          <li><a href="#">Ing. Geodésica</a></li>
+          <li><a href="#">Ing. de Software</a></li>
+          <li><a href="#">Ing. en Proc. Industriales</a></li>
+          <li><a href="#">Ing. en Nano. y Ene. Renov.</a></li>
+          <li><a href="#">Posgrado (MCI / DCI)</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="#">Servicios ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Servicio Social</a></li>
+          <li><a href="#">Prácticas Profesionales</a></li>
+          <li><a href="#">Tutorías</a></li>
+          <li><a href="#">Titulación</a></li>
+          <li><a href="#">Seguro Facultativo</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="#">Dirección ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Misión y Visión</a></li>
+          <li><a href="#">Directorio</a></li>
+          <li><a href="#">Organigrama</a></li>
+          <li><a href="#">Personal Administrativo</a></li>
+        </ul>
+      </li>
+
+      <li><a href="#">Investigación</a></li>
+      <li><a href="#">Egresados</a></li>
+      <li><a href="#" class="nav-cta">Ingreso →</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-placeholder">
+  </div>
+
+</body>
+</html>
