@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Rosa Karina Rosas Burgueño - Ejercicio #18</title>
+  <title>Rosa Karina Rosas Burgueño - Practica #18</title>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -21,179 +21,237 @@
       --blanco:   #FDFCFF;
     }
 
-    body {
-      font-family: 'Nunito', sans-serif;
-      background: var(--lav-cl);
-      min-height: 100vh;
-    }
+    body { font-family: 'Nunito', sans-serif; background: var(--lav-cl); }
 
+    /* Barra de arriba */
     .topbar {
       background: var(--lav-med);
       color: var(--blanco);
-      font-size: .78rem;
-      font-weight: 600;
+      font-size: .78rem; font-weight: 600;
       padding: .45rem 2.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-      letter-spacing: .01em;
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
     }
-
-    .topbar a {
-      color: var(--blanco);
-      text-decoration: none;
-      opacity: .88;
-      transition: opacity .15s;
-    }
+    .topbar a { color: var(--blanco); text-decoration: none; opacity: .88; }
     .topbar a:hover { opacity: 1; text-decoration: underline; }
+    .topbar-links { display: flex; gap: 1.6rem; }
 
-    .topbar-links { display: flex; gap: 1.6rem; flex-wrap: wrap; }
-
+    /* Barra de navegación */
     nav {
       background: var(--blanco);
       box-shadow: 0 2px 18px rgba(160,157,200,.2);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 2.5rem;
-      height: 70px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem; height: 70px;
+      position: sticky; top: 0; z-index: 100;
     }
-
-    .nav-brand {
-      display: flex;
-      align-items: center;
-      gap: .9rem;
-      text-decoration: none;
-    }
-
+    .nav-brand { display: flex; align-items: center; gap: .9rem; text-decoration: none; }
     .nav-logo {
-      width: 46px; height: 46px;
-      border-radius: 12px;
+      width: 46px; height: 46px; border-radius: 12px;
       background: linear-gradient(135deg, var(--lav-med), var(--rosa));
-      display: flex;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Lora', serif; font-weight: 600; font-size: 1.1rem; color: white;
+    }
+    .nav-name { font-family: 'Lora', serif; font-size: .98rem; font-weight: 600; color: var(--texto); line-height: 1.2; }
+    .nav-sub { font-size: .7rem; font-weight: 400; color: var(--texto-cl); }
+    .nav-links { display: flex; list-style: none; gap: .2rem; align-items: center; height: 100%; }
+    .nav-links > li { position: relative; height: 100%; display: flex; align-items: center; }
+    .nav-links > li > a {
+      display: flex; align-items: center; gap: .3rem; padding: .45rem .9rem;
+      font-size: .88rem; font-weight: 600; color: var(--texto-cl);
+      text-decoration: none; border-radius: 10px; transition: background .18s, color .18s;
+    }
+    .nav-links > li > a:hover, .nav-links > li:hover > a { background: var(--lav-cl); color: var(--texto); }
+    .dropdown-menu {
+      display: none; position: absolute; top: calc(100% + 6px); left: 0;
+      background: var(--blanco); border: 1.5px solid var(--lav-cl); border-radius: 14px;
+      box-shadow: 0 8px 30px rgba(160,157,200,.25); min-width: 210px; padding: .6rem;
+      list-style: none; z-index: 200;
+    }
+    .nav-links li:hover .dropdown-menu { display: block; }
+    .dropdown-menu li a {
+      display: block; padding: .55rem 1rem; font-size: .84rem; font-weight: 600;
+      color: var(--texto); text-decoration: none; border-radius: 10px; transition: background .15s;
+    }
+    .dropdown-menu li a:hover { background: var(--rosa-cl); }
+    .nav-cta {
+      background: linear-gradient(135deg, var(--lav-med), var(--rosa));
+      color: white !important; padding: .55rem 1.3rem !important; border-radius: 10px !important;
+      font-weight: 700 !important; box-shadow: 0 3px 12px rgba(160,157,200,.4);
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(160,157,200,.5) !important; }
+
+    /* Estilo de la sección principal */
+    .hero {
+      background: linear-gradient(150deg, var(--lav-cl) 0%, var(--rosa-cl) 50%, var(--azul-cl) 100%);
+      padding: 5.5rem 4rem 4rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
       align-items: center;
-      justify-content: center;
-      font-family: 'Lora', serif;
-      font-weight: 600;
-      font-size: 1.1rem;
-      color: white;
-      letter-spacing: -.01em;
+      position: relative;
+      overflow: hidden;
+      min-height: 86vh;
     }
 
-    .nav-name-wrap {
-      display: flex;
-      flex-direction: column;
+    /* Círculos decorativos de fondo */
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 420px; height: 420px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(197,195,232,.45) 0%, transparent 70%);
+      top: -80px; right: -60px;
+      pointer-events: none;
     }
-    .nav-name {
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(232,195,212,.4) 0%, transparent 70%);
+      bottom: -60px; left: 10%;
+      pointer-events: none;
+    }
+
+    /* Etiqueta redondeada con la ubicación y escuela */
+    .hero-badge {
+      display: inline-flex;
+      align-items: center; gap: .5rem;
+      background: white;
+      border: 1.5px solid var(--lav);
+      color: var(--texto);
+      border-radius: 100px;
+      font-size: .78rem; font-weight: 700;
+      letter-spacing: .05em; text-transform: uppercase;
+      padding: .38rem 1rem;
+      margin-bottom: 1.4rem;
+      box-shadow: 0 2px 10px rgba(160,157,200,.2);
+    }
+    .hero-badge .dot {
+      width: 7px; height: 7px;
+      background: linear-gradient(135deg, var(--lav-med), var(--rosa));
+      border-radius: 50%;
+    }
+
+    .hero-content { position: relative; z-index: 1; }
+
+    .hero h1 {
       font-family: 'Lora', serif;
-      font-size: .98rem;
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
       font-weight: 600;
       color: var(--texto);
       line-height: 1.2;
+      margin-bottom: 1.2rem;
+      letter-spacing: -.02em;
     }
-    .nav-sub {
-      font-size: .7rem;
+    .hero h1 em {
+      font-style: italic;
+      color: var(--lav-med);
+    }
+
+    .hero p {
+      font-size: 1rem;
+      color: var(--texto-cl);
+      max-width: 460px;
+      margin-bottom: 2.2rem;
       font-weight: 400;
-      color: var(--texto-cl);
-      letter-spacing: .02em;
+      line-height: 1.7;
     }
 
-    .nav-links {
-      display: flex;
-      list-style: none;
-      gap: .2rem;
-      align-items: center;
-      height: 100%;
-    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
 
-    .nav-links > li { position: relative; height: 100%; display: flex; align-items: center; }
-
-    .nav-links > li > a {
-      display: flex;
-      align-items: center;
-      gap: .3rem;
-      padding: .45rem .9rem;
-      font-size: .88rem;
-      font-weight: 600;
-      color: var(--texto-cl);
-      text-decoration: none;
-      border-radius: 10px;
-      transition: background .18s, color .18s;
-    }
-    .nav-links > li > a:hover,
-    .nav-links > li:hover > a {
-      background: var(--lav-cl);
-      color: var(--texto);
-    }
-
-    .dropdown-menu {
-      display: none;
-      position: absolute;
-      top: calc(100% + 6px);
-      left: 0;
-      background: var(--blanco);
-      border: 1.5px solid var(--lav-cl);
-      border-radius: 14px;
-      box-shadow: 0 8px 30px rgba(160,157,200,.25);
-      min-width: 210px;
-      padding: .6rem;
-      list-style: none;
-      z-index: 200;
-    }
-    .nav-links li:hover .dropdown-menu { display: block; }
-
-    .dropdown-menu li a {
-      display: block;
-      padding: .55rem 1rem;
-      font-size: .84rem;
-      font-weight: 600;
-      color: var(--texto);
-      text-decoration: none;
-      border-radius: 10px;
-      transition: background .15s;
-    }
-    .dropdown-menu li a:hover { background: var(--rosa-cl); }
-
-    .nav-cta {
+    .btn-primary {
       background: linear-gradient(135deg, var(--lav-med), var(--rosa));
-      color: white !important;
-      padding: .55rem 1.3rem !important;
-      border-radius: 10px !important;
-      font-weight: 700 !important;
-      box-shadow: 0 3px 12px rgba(160,157,200,.4);
-      transition: transform .15s, box-shadow .15s !important;
+      color: white;
+      border: none; padding: .85rem 1.9rem; border-radius: 12px;
+      font-family: 'Nunito', sans-serif; font-weight: 700; font-size: .95rem;
+      cursor: pointer; text-decoration: none; display: inline-block;
+      box-shadow: 0 4px 16px rgba(160,157,200,.4);
+      transition: transform .15s, box-shadow .15s;
     }
-    .nav-cta:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 6px 18px rgba(160,157,200,.5) !important;
-      background: linear-gradient(135deg, #9491C0, #D8A0B9) !important;
-    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(160,157,200,.5); }
 
-    .page-placeholder {
+    .btn-outline {
+      background: white;
+      color: var(--texto);
+      border: 1.5px solid var(--lav);
+      padding: .85rem 1.9rem; border-radius: 12px;
+      font-family: 'Nunito', sans-serif; font-weight: 700; font-size: .95rem;
+      cursor: pointer; text-decoration: none; display: inline-block;
+      transition: border-color .15s, background .15s;
+    }
+    .btn-outline:hover { border-color: var(--lav-med); background: var(--lav-cl); }
+
+    /* Panel derecho de la seccion principal */
+    .hero-visual { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 1.1rem; }
+
+    /* Tarjetas de estadísticas */
+    .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .stat-card {
+      background: white;
+      border: 1.5px solid var(--lav-cl);
+      border-radius: 18px; padding: 1.4rem;
       text-align: center;
-      padding: 6rem 2rem;
-      color: var(--texto-cl);
-      font-size: .95rem;
-      font-weight: 600;
-      letter-spacing: .04em;
-      text-transform: uppercase;
+      box-shadow: 0 3px 14px rgba(160,157,200,.15);
+      transition: transform .2s, box-shadow .2s;
     }
-    .page-placeholder span {
-      display: block;
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      opacity: .4;
-    }
+    .stat-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(160,157,200,.25); }
 
-    @media(max-width: 780px) {
+    .stat-num {
+      font-family: 'Lora', serif;
+      font-size: 2rem; font-weight: 600;
+      background: linear-gradient(135deg, var(--lav-med), var(--rosa));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1; margin-bottom: .35rem;
+    }
+    .stat-label { font-size: .78rem; font-weight: 700; color: var(--texto-cl); line-height: 1.3; }
+
+    /* Banner de aviso/noticias rápidas */
+    .aviso-card {
+      background: white;
+      border: 1.5px solid var(--rosa);
+      border-radius: 16px; padding: 1.1rem 1.4rem;
+      display: flex; gap: .9rem; align-items: flex-start;
+      box-shadow: 0 3px 14px rgba(232,195,212,.3);
+    }
+    .aviso-icon {
+      width: 34px; height: 34px; min-width: 34px;
+      background: var(--rosa-cl); border-radius: 10px;
+      display: grid; place-items: center; font-size: 1rem;
+    }
+    .aviso-title { font-size: .82rem; font-weight: 800; color: var(--texto); margin-bottom: .2rem; }
+    .aviso-text { font-size: .78rem; color: var(--texto-cl); line-height: 1.5; }
+
+    /* Animación de entrada */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-content > * { animation: fadeUp .55s ease both; }
+    .hero-content > *:nth-child(1) { animation-delay: .1s; }
+    .hero-content > *:nth-child(2) { animation-delay: .2s; }
+    .hero-content > *:nth-child(3) { animation-delay: .3s; }
+    .hero-content > *:nth-child(4) { animation-delay: .4s; }
+    .hero-visual { animation: fadeUp .55s ease .45s both; }
+
+    /* Placeholder de resto del contenido */
+    .next-placeholder {
+      text-align: center; padding: 4rem 2rem;
+      color: var(--texto-cl); font-size: .9rem; font-weight: 600;
+      letter-spacing: .04em; text-transform: uppercase;
+    }
+    .next-placeholder span { display: block; font-size: 1.8rem; margin-bottom: .8rem; opacity: .4; }
+
+    @media(max-width: 860px) {
+      .hero { grid-template-columns: 1fr; padding: 3rem 2rem; min-height: auto; }
+      .stats-grid { grid-template-columns: repeat(4, 1fr); }
       .nav-links { display: none; }
       .topbar-links { display: none; }
-      nav { padding: 0 1.2rem; }
-      .topbar { padding: .4rem 1.2rem; }
+    }
+    @media(max-width: 560px) {
+      .stats-grid { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
@@ -201,10 +259,8 @@
 
   <div class="topbar">
     <span>Universidad Autónoma de Sinaloa &nbsp;·&nbsp;
-      <a href="http://dse.uasnet.mx/alumnos" target="_blank">SIIA Alumnos</a>
-      &nbsp;·&nbsp;
-      <a href="http://diplouasvirtual.net/ing_mochis" target="_blank">Moodle</a>
-      &nbsp;·&nbsp;
+      <a href="http://dse.uasnet.mx/alumnos" target="_blank">SIIA Alumnos</a> &nbsp;·&nbsp;
+      <a href="http://diplouasvirtual.net/ing_mochis" target="_blank">Moodle</a> &nbsp;·&nbsp;
       <a href="mailto:fim@uas.edu.mx">Contacto</a>
     </span>
     <div class="topbar-links">
@@ -217,15 +273,13 @@
   <nav>
     <a class="nav-brand" href="#">
       <div class="nav-logo">FIM</div>
-      <div class="nav-name-wrap">
-        <span class="nav-name">Fac. de Ingeniería Mochis</span>
-        <span class="nav-sub">Universidad Autónoma de Sinaloa</span>
+      <div>
+        <div class="nav-name">Fac. de Ingeniería Mochis</div>
+        <div class="nav-sub">Universidad Autónoma de Sinaloa</div>
       </div>
     </a>
-
     <ul class="nav-links">
       <li><a href="#">Inicio</a></li>
-
       <li>
         <a href="#">Oferta Educativa ▾</a>
         <ul class="dropdown-menu">
@@ -237,7 +291,6 @@
           <li><a href="#">Posgrado (MCI / DCI)</a></li>
         </ul>
       </li>
-
       <li>
         <a href="#">Servicios ▾</a>
         <ul class="dropdown-menu">
@@ -248,7 +301,6 @@
           <li><a href="#">Seguro Facultativo</a></li>
         </ul>
       </li>
-
       <li>
         <a href="#">Dirección ▾</a>
         <ul class="dropdown-menu">
@@ -258,15 +310,47 @@
           <li><a href="#">Personal Administrativo</a></li>
         </ul>
       </li>
-
       <li><a href="#">Investigación</a></li>
       <li><a href="#">Egresados</a></li>
       <li><a href="#" class="nav-cta">Ingreso →</a></li>
     </ul>
   </nav>
 
-  <div class="page-placeholder">
-  </div>
+  <!-- Estructura sección principal -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge"><span class="dot"></span> Los Mochis, Sinaloa · UAS</div>
+      <h1>Ingeniería con <em>visión</em> y propósito en el noroeste</h1>
+      <p>Seis programas de licenciatura, modalidad presencial y virtual, más posgrado. Formamos ingenieros listos para transformar su región.</p>
+      <div class="hero-btns">
+        <a href="#" class="btn-primary">Conoce las carreras</a>
+        <a href="#" class="btn-outline">Portal de ingreso</a>
+      </div>
+    </div>
 
+    <div class="hero-visual">
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-num">6</div><div class="stat-label">Programas educativos</div></div>
+        <div class="stat-card"><div class="stat-num">50+</div><div class="stat-label">Años de trayectoria</div></div>
+        <div class="stat-card"><div class="stat-num">MX·PE</div><div class="stat-label">Colaboración internacional</div></div>
+        <div class="stat-card"><div class="stat-num">UAS</div><div class="stat-label">Acreditación oficial</div></div>
+      </div>
+      <div class="aviso-card">
+        <div>
+          <div class="aviso-title">Exámenes Extraordinarios — Programación disponible</div>
+          <div class="aviso-text">Consulta el calendario por carrera y plan de estudios. Haz clic en cada imagen para ver tu programación.</div>
+        </div>
+      </div>
+      <div class="aviso-card">
+        <div>
+          <div class="aviso-title">¡Orgullo FIM! — 2do lugar nacional en powerlifting</div>
+          <div class="aviso-text">Jorge Daniel Valenzuela Beltrán, Ing. Civil, representó a la facultad en el XVI Campeonato Nacional en Mazatlán.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
 </body>
 </html>
